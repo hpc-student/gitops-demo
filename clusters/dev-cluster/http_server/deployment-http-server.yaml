@@ -18,11 +18,11 @@ spec:
         image: ghcr.io/hpc-student/http_server:main
         resources:
           requests:
-            memory: 100Mi
-            cpu: 200m
+            memory: "100Mi"
+            cpu: "200m"
           limits:
-            memory: 200Mi
-            cpu: 200m
+            memory: "200Mi"
+            cpu: "200m"
 
         ports:
         - containerPort: 80
