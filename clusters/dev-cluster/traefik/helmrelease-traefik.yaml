@@ -19,3 +19,7 @@ spec:
     ingressClass:
       enabled: true
       isDefaultClass: true
+    # expode Dashboard
+    ingressRoute:
+      dashboard:
+        enabled: true
