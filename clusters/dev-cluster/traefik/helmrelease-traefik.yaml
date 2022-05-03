@@ -14,3 +14,8 @@ spec:
         name: traefik
       version: 10.0.0
   interval: 1m0s
+  values:
+    # Set Traefik as your default Ingress Controller, according to Kubernetes 1.19+ changes.
+    ingressClass:
+      enabled: true
+      isDefaultClass: true
