@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: http-server-ruby
-        image: ghcr.io/hpc-student/http_server:main-382d55097a70f85b5c2af54227bcf54eea3e4b06-5
+        image: ghcr.io/hpc-student/http_server:main-382d55097a70f85b5c2af54227bcf54eea3e4b06-5 # {"$imagepolicy": "flux-system:http-server"}
         resources:
           requests:
             memory: "100Mi"
