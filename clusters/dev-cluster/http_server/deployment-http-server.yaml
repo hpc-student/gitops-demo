@@ -7,7 +7,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-        app: http-server
+      app: http-server
   template:
     metadata:
       labels:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: http-server-ruby
-        image: ghcr.io/hpc-student/http_server:main-382d55097a70f85b5c2af54227bcf54eea3e4b06-5 # {"$imagepolicy": "flux-system:http-server"}
+        image: ghcr.io/hpc-student/http_server:main-0e0c80c4121208a7550d9bcf9cb298ef7f770618-6 # {"$imagepolicy": "flux-system:http-server"}
         resources:
           requests:
             memory: "100Mi"
@@ -38,4 +38,3 @@ spec:
           periodSeconds: 2
         ports:
         - containerPort: 80
-
