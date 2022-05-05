@@ -13,6 +13,17 @@ spec:
       labels:
         app: http-server
     spec:
+      # The Pod anti-affinity rule tells the scheduler to avoid placing multiple app=http-server servers on a single node
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - http-server
+            topologyKey: "kubernetes.io/hostname"
       containers:
       - name: http-server-ruby
         image: ghcr.io/hpc-student/http_server:main-0e0c80c4121208a7550d9bcf9cb298ef7f770618-6 # {"$imagepolicy": "flux-system:http-server"}
