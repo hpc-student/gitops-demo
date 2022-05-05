@@ -2,12 +2,12 @@
 
 ## create github personal token with the next permissions; and export "GITHUB_TOKEN" and "GITHUB_USER" as env variables :
 
-   - <img src="./PAT_permissions.png" alt="PAT_permissions" width="500"/>
+   - <img src="./pat_permissions.png" alt="PAT_permissions" width="500"/>
 
 
 
 ## fork both repos to your account :
-### repo 1 (app + CI) : git@github.com:hpc-student/http_server.git :
+### repo 1 (app + CI) : "git@github.com:hpc-student/http_server.git" :
 - this includes the ruby-simple-server application
 - Dockerfile 
 - Github Actions workflow listen to push events > build new image and push it to registry
@@ -41,6 +41,8 @@
 >  --read-write-key \
 >
 >  --personal
+
+## 
 
 <hr>
 <hr>
