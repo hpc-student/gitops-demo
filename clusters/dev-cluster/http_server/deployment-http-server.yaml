@@ -25,7 +25,7 @@ spec:
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: http-server-ruby
-        image: ghcr.io/hpc-student/http_server:main-0e0c80c4121208a7550d9bcf9cb298ef7f770618-6 # {"$imagepolicy": "flux-system:http-server"}
+        image: ghcr.io/hpc-student/http_server:main-08a79e84920d19935eab5280804fdca4693bc535-7 # {"$imagepolicy": "flux-system:http-server"}
         resources:
           requests:
             memory: "100Mi"
