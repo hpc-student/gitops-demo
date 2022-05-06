@@ -16,9 +16,10 @@
 
 ### repo 2 ( CD with FluxV2 - GitOps ): "git@github.com:hpc-student/gitops-demo.git"
 - this includes the main work
-## we assume you have kubectl configured with your k8s cluster , in case of minikube enable "metallb","metrics-server" addons.
+## we assume you have kubectl configured with your k8s cluster , in case of minikube enable and configure "metallb","metrics-server" addons .
 - "metrics-server" required for "Horizontal Pod Autoscaler"
 - MetalLB is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
+- for more details scroll down to minikube section.
 ## install flux V2 CLI
 ```
  > curl -s https://fluxcd.io/install.sh | sudo bash
@@ -35,7 +36,8 @@
   --branch=main \
   --path=./clusters/dev-cluster \
   --read-write-key \
-  --personal
+  --personal \
+  --private=false
 ```
 
 <hr>
@@ -54,6 +56,31 @@
 <hr>
 <hr>
 
+# minikube :
+```
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+
+sudo dpkg -i minikube_latest_amd64.deb
+
+minikube start 
+
+alias kubectl="minikube kubectl --"
+
+minikube addons enable metrics-server
+
+minikube ip
+
+minikube addons enable metallb 
+
+minikube addons configure metallb
+
+# my minikube ip is "192.168.49.2" , I will asign this range to metallb : "192.168.49.5" to "192.168.49.25"
+
+```
+
+<hr>
+<hr>
+<hr>
 
 # the Strategy/Architecture:
 ## we will use GitOps workflow with flux v2
@@ -100,7 +127,7 @@ this repo will be the "single source of truth" it will be a mirror to what is go
 - modify the application "http-server" : add respone code 200 
 - setting Image Update Automation for the CI/CD pipeline to be complete
 - redirect http to https
-- add Pod anti-affinity rule to avoid placing multiple app=http-server servers on a single node
+- add Pod anti-affinity rule to avoid placing multiple app=http-server servers on a single node : "preferredDuringSchedulingIgnoredDuringExecution"
 - configure "Horizontal Pod Autoscaler" , note : node autoscaler is related to "amazon auto scaling groups" which is a node pool where you can bootstrap a new node and add to your working plan , I don't know if there is a way to simulate that in minikube
 - routing and LoadBalancing : since we have just one app all traffic will be routed to it , ohterwise we can use IngressRoute to route traffic based on paths or subdomains in Ingressroute 
 - LoadBalancing: keep the default which is "Round Robin" , we can use IngressRoute to specify another strategy like : "WeightedLeastRequest"
